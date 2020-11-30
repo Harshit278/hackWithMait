@@ -2,12 +2,11 @@ const express = require("express"),
     app = express(),
     bodyParser = require("body-parser");
 
-const oneMg=require("../backend/1mg/scraper");
-const netMeds=require("../backend/netMeds/scraper");
-const PharmEasy=require("../backend/pharmEasy/scraper");
+const oneMg = require("../backend/1mg/scraper");
+const netMeds = require("../backend/netMeds/scraper");
+const PharmEasy = require("../backend/pharmEasy/scraper");
 
-
-    app.set("view engine", "ejs");
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -23,9 +22,9 @@ app.post("/compare", async (req, res) => {
     console.log(req.body.medicine);
     let medicineName = req.body.medicine;
 
-    const oneMgdata=await oneMg(medicineName);
-    const netMedsData=await netMeds(medicineName);
-    const pharmEasyData=await PharmEasy(medicineName);
+    const oneMgdata = await oneMg(medicineName);
+    const netMedsData = await netMeds(medicineName);
+    const pharmEasyData = await PharmEasy(medicineName);
 
     const medicines = [
         {
